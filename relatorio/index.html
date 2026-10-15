@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Villa Verde · Relatório de Mídia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: faixa escura da marca no topo, depois uma coluna de seções em cartões claros; cores da logo + paleta didática por campanha */
+:root {
+  --ink: #16171B; --blue: #2D9FF8; --blue-hi: #3B9EF7;
+  --bg: #F3F6FA; --surface: #FFFFFF; --fg: #16171B; --muted: #5A6372; --line: #E2E7EE;
+  --blue-text: #0F6BCB; --blue-soft: #E7F3FE;
+  --c-nest: #2D9FF8; --c-cedro: #F59E0B; --c-sensia: #8B5CF6; --c-com: #0EA5A0; --c-com-soft: #E2F6F5;
+  --ok: #15803D; --ok-soft: #E3F5E9; --warn: #B45309; --warn-soft: #FDF1DE; --bad: #DC2626; --bad-soft: #FDE8E8;
+  --grid: #E6EAF0; --band: rgba(45,159,248,.10); --band-ink: #0F6BCB;
+  --f-display: "Sora", "Segoe UI", system-ui, sans-serif; --f-body: "Manrope", "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E0F12; --surface: #16171B; --fg: #F1F3F6; --muted: #9CA5B3; --line: #262933;
+  --blue-text: #6BBEFB; --blue-soft: #10263A; --c-com-soft: #0C2A29; --c-com: #2DD4BF;
+  --ok: #4ADE80; --ok-soft: #0F2A1A; --warn: #FBBF24; --warn-soft: #2D2210; --bad: #F87171; --bad-soft: #2E1414;
+  --grid: #23262E; --band: rgba(45,159,248,.14); --band-ink: #6BBEFB; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0E0F12; --surface: #16171B; --fg: #F1F3F6; --muted: #9CA5B3; --line: #262933;
+  --blue-text: #6BBEFB; --blue-soft: #10263A; --c-com-soft: #0C2A29; --c-com: #2DD4BF;
+  --ok: #4ADE80; --ok-soft: #0F2A1A; --warn: #FBBF24; --warn-soft: #2D2210; --bad: #F87171; --bad-soft: #2E1414;
+  --grid: #23262E; --band: rgba(45,159,248,.14); --band-ink: #6BBEFB; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font: 15px/1.55 var(--f-body); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1120px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: -.01em; }
+p { margin: 0; }
+.num, td, .kv { font-variant-numeric: tabular-nums; }
+
+.hero { background: var(--ink); color: #F4F7FB; position: relative; overflow: hidden; }
+.hero::after { content: ""; position: absolute; inset: auto -10% -60% 40%; height: 120%; background: radial-gradient(closest-side, rgba(45,159,248,.28), transparent); pointer-events: none; }
+.hero .wrap { padding-block: 40px 44px; display: grid; gap: 28px; position: relative; z-index: 1; }
+.brand { display: flex; align-items: center; gap: 12px; font-family: var(--f-display); font-weight: 600; letter-spacing: .08em; font-size: 12px; text-transform: uppercase; color: #9FCFFC; }
+.logo { width: 34px; height: auto; fill: var(--blue); flex: none; }
+.hero h1 { font-size: clamp(30px, 5vw, 48px); font-weight: 700; line-height: 1.08; }
+.hero h1 em { font-style: normal; color: var(--blue); }
+.hero .sub { color: #A9B3C2; max-width: 70ch; font-size: 14px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 1px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; overflow: hidden; }
+.kpi { background: #1C1D22; padding: 16px 18px; display: grid; gap: 4px; }
+.kpi .l { font-size: 12px; color: #A9B3C2; }
+.kpi .v { font-family: var(--f-display); font-size: 26px; font-weight: 600; color: #FFFFFF; }
+.kpi .s { font-size: 12px; color: #7F8A9A; }
+.kpi.com .v { color: #5EEAD4; }
+.kpi.com .l::before { content: "comercial · "; color: #5EEAD4; }
+
+main .wrap { display: grid; gap: 28px; padding-block: 28px 56px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: grid; gap: 16px; min-width: 0; }
+.card > h2, .sec-h { font-size: 20px; font-weight: 600; }
+.eyebrow { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-text); font-weight: 700; }
+.note { color: var(--muted); font-size: 13px; max-width: 80ch; }
+.alert { background: var(--bad-soft); border-color: transparent; }
+.alert h2 { color: var(--bad); display: flex; gap: 10px; align-items: center; }
+.alert h2::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--bad); box-shadow: 0 0 0 5px color-mix(in srgb, var(--bad) 22%, transparent); flex: none; }
+.meter { height: 10px; border-radius: 99px; background: color-mix(in srgb, var(--bad) 18%, transparent); overflow: hidden; }
+.meter span { display: block; height: 100%; background: var(--bad); border-radius: 99px; }
+.meter-l { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; color: var(--muted); }
+
+.crm { background: var(--blue-soft); border-color: transparent; }
+.crm h2 { color: var(--blue-text); }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-right: 6px; vertical-align: -1px; }
+.fun { display: grid; gap: 8px; }
+.fun-h { display: flex; align-items: center; gap: 8px; font-weight: 600; flex-wrap: wrap; }
+.fun-n { font-weight: 500; font-size: 12px; color: var(--muted); }
+.steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.step { border-radius: 10px; padding: 10px 10px 9px; display: grid; gap: 2px; min-width: 0; }
+.step .sv { font-family: var(--f-display); font-size: 20px; font-weight: 600; }
+.step .sl { font-size: 11px; line-height: 1.3; color: var(--muted); }
+.step.meta { background: color-mix(in srgb, var(--blue) 16%, var(--surface)); }
+.step.com { background: var(--c-com-soft); outline: 1.5px solid var(--c-com); }
+.step.com .sv { color: var(--c-com); }
+.step.miss { border: 1.5px dashed var(--line); background: transparent; }
+.step.miss .sv { color: var(--muted); }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; margin-right: 6px; vertical-align: 0; }
+@media (max-width: 640px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+.verd { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: grid; gap: 12px; align-content: start; position: relative; overflow: hidden; min-width: 0; }
+.verd::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--vc); }
+.verd h3 { font-size: 18px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dec { font-family: var(--f-body); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; border-radius: 99px; }
+.dec.wait { background: var(--warn-soft); color: var(--warn); }
+.dec.keep { background: var(--ok-soft); color: var(--ok); }
+.dec.change { background: var(--bad-soft); color: var(--bad); }
+.verd dl { margin: 0; display: grid; gap: 10px; }
+.verd dt { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.verd dd { margin: 0; font-size: 14px; }
+.verd b { font-weight: 700; }
+.com-t { color: var(--c-com); font-weight: 700; }
+.tag { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 99px; white-space: nowrap; }
+.tag.com { background: var(--c-com-soft); color: var(--c-com); }
+
+.tw { overflow-x: auto; margin-inline: -4px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th { text-align: right; font-weight: 600; color: var(--muted); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; font-size: 12px; }
+td { text-align: right; padding: 9px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+th.txt, td.txt { text-align: left; }
+td.wrap { white-space: normal; min-width: 220px; }
+td.ref { color: var(--muted); }
+td.bad { color: var(--bad); font-weight: 600; }
+.pill { display: inline-block; padding: 2px 9px; border-radius: 99px; font-weight: 600; font-size: 12px; }
+.pill.lo { background: var(--blue-soft); color: var(--blue-text); }
+.pill.in { background: var(--ok-soft); color: var(--ok); }
+.pill.hi { background: var(--bad-soft); color: var(--bad); }
+.pill.neutral { background: color-mix(in srgb, var(--muted) 14%, transparent); color: var(--fg); }
+.bc { display: inline-flex; align-items: center; gap: 8px; justify-content: flex-end; }
+.bc .b { height: 8px; border-radius: 4px; display: inline-block; }
+.st { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 99px; margin-right: 6px; }
+.st.ok { background: var(--ok-soft); color: var(--ok); }
+.st.no { background: var(--bad-soft); color: var(--bad); }
+.st.warn { background: var(--warn-soft); color: var(--warn); }
+.st.unk { background: color-mix(in srgb, var(--muted) 14%, transparent); color: var(--muted); }
+.stn { font-size: 12px; color: var(--muted); white-space: normal; }
+table.chk td { white-space: normal; vertical-align: top; min-width: 120px; }
+
+svg .tick { font: 12px var(--f-body); fill: var(--muted); }
+svg .lbl { font: 600 11px var(--f-body); }
+svg .end { font: 700 12px var(--f-body); }
+.chart { min-width: 0; }
+.chart-leg { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--muted); }
+.chart-leg span { display: inline-flex; align-items: center; gap: 6px; }
+.chart-leg i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+
+ol.ask { margin: 0; padding-left: 20px; display: grid; gap: 8px; max-width: 80ch; }
+details { border-top: 1px solid var(--line); padding-top: 12px; }
+details > summary { cursor: pointer; font-family: var(--f-display); font-weight: 600; font-size: 16px; list-style: none; display: flex; align-items: center; gap: 8px; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary::before { content: "+"; width: 22px; height: 22px; border-radius: 6px; background: var(--blue-soft); color: var(--blue-text); display: inline-grid; place-items: center; font-weight: 700; }
+details[open] > summary::before { content: "−"; }
+details > div { padding-top: 14px; display: grid; gap: 8px; }
+summary:focus-visible, a:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+footer { color: var(--muted); font-size: 12px; }
+footer .wrap { padding-block: 0 40px; display: grid; gap: 6px; }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><svg class="logo" viewBox="290 376 444 528" aria-hidden="true"><polygon points="394,386 684,386 724,432 582,606 538,552 629,440 394,440"/><polygon points="306,440 394,440 684,798 596,799"/><polygon points="441,673 485,727 394,840 630,840 630,894 340,894 300,848"/></svg><span>Provecta VGV · Relatório de mídia</span></div>
+    <div style="display:grid;gap:12px">
+      <h1>Villa Verde · <em>campanhas ativas</em></h1>
+      <p class="sub">Meta Ads · período completo de cada campanha até 15/10/2026 (dia 15 parcial). NEST desde 13/08, Cedro desde 26/09, Sensia desde 14/10. Leitura feita só na conta de anúncios; nenhuma configuração foi alterada.</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><span class="l">Investimento</span><span class="v">R$ 3.485,71</span><span class="s">3 campanhas</span></div>
+      <div class="kpi"><span class="l">Leads de formulário</span><span class="v">170</span><span class="s">CPL médio R$ 20,50</span></div>
+      <div class="kpi"><span class="l">Conversas iniciadas</span><span class="v">88</span><span class="s">a partir dos anúncios</span></div>
+      <div class="kpi com"><span class="l">venda</span><span class="v">R$ 567.400</span><span class="s">NEST · outro prédio da região</span></div>
+      <div class="kpi com"><span class="l">qualificados</span><span class="v">4 de 16</span><span class="s">Cedro</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <section class="card alert" id="limite">
+    <h2>A conta está a R$ 39,77 de parar</h2>
+    <p>O limite de gasto da conta é R$ 5.549,62 e já foram gastos R$ 5.509,85 (leitura das 16h52 de 15/10 (Brasília)). Os orçamentos diários ativos somam R$ 145 e só hoje a conta já gastou R$ 89,88. Quando o limite é atingido, as três campanhas param juntas, e a retomada pode reiniciar a fase de aprendizado.</p>
+    <div class="meter" role="img" aria-label="99,3% do limite usado"><span style="width:99.3%"></span></div>
+    <div class="meter-l"><span>99,3% do limite usado</span><span>Decisão de aumentar ou remover o limite: Gabriel / cliente</span></div>
+  </section>
+
+  <section class="card crm" id="sem-crm">
+    <span class="eyebrow">Leia antes dos números</span>
+    <h2>Este relatório enxerga a mídia, não a venda</h2>
+    <p>Não temos acesso ao CRM. Tudo o que vem da Meta (CPL, CPM, CTR, frequência) diz se a entrega está saudável. Não diz se a operação está vendendo. Pela nossa doutrina, CPL é métrica de mídia e não de negócio: CPL baixo pode ser ótimo ou pode ser curioso barato, e só o funil comercial separa um do outro.</p>
+    <p>Os únicos dados comerciais desta página foram informados pelo comercial em conversa, aparecem em <span class="com-t">verde-água</span> e não foram conferidos em CRM. Os quadros tracejados são o que ainda não sabemos. Cada um deles que o comercial preencher muda a leitura deste relatório.</p>
+    <div class="legend"><span><i style="background:color-mix(in srgb, var(--blue) 30%, transparent)"></i>Dado da Meta</span><span><i style="background:var(--c-com)"></i>Informado pelo comercial</span><span><i style="border:1.5px dashed var(--muted)"></i>Sem dado</span></div>
+    <div class="fun"><div class="fun-h"><span class="dot" style="background:var(--c-nest)"></span>NEST Rio Vermelho<span class=fun-n>venda de outro prédio da região</span></div><div class="steps"><div class="step meta"><span class="sv">152</span><span class="sl">Leads</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Qualificado (MQL)</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Visita agendada</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Visita realizada</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Proposta</span></div><div class="step com"><span class="sv">1</span><span class="sl">Venda</span></div></div></div><div class="fun"><div class="fun-h"><span class="dot" style="background:var(--c-cedro)"></span>Cedro</div><div class="steps"><div class="step meta"><span class="sv">16</span><span class="sl">Leads</span></div><div class="step com"><span class="sv">4</span><span class="sl">Qualificado (MQL)</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Visita agendada</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Visita realizada</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Proposta</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Venda</span></div></div></div><div class="fun"><div class="fun-h"><span class="dot" style="background:var(--c-sensia)"></span>Sensia Patamares<span class=fun-n>2 dias de campanha</span></div><div class="steps"><div class="step meta"><span class="sv">2</span><span class="sl">Leads</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Qualificado (MQL)</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Visita agendada</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Visita realizada</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Proposta</span></div><div class="step miss"><span class="sv">?</span><span class="sl">Venda</span></div></div></div>
+  </section>
+
+  <section class="card" id="comparativo">
+    <h2>Comparativo por campanha</h2>
+    <p class="note">Os três produtos estão na faixa médio/alto padrão (a partir de R$ 700 mil), cuja referência de CPL na doutrina é R$ 30–60, com 100 a 150 leads por venda. CPL em <span class="pill lo">azul</span> está abaixo da faixa, em <span class="pill in">verde</span> dentro e em <span class="pill hi">vermelho</span> acima. Abaixo da faixa não quer dizer melhor: é sinal para conferir a qualidade com o comercial.</p>
+    <div class="tw"><table class=""><thead><tr><th class="txt">Campanha</th><th class="">Ticket anunciado</th><th class="">Desde</th><th class="">Orçam./dia</th><th class="">Investimento</th><th class="">Leads</th><th class="">CPL</th><th class="">CPL referência</th><th class="">Conversas</th><th class="">CPM</th><th class="">CTR link</th><th class="">Freq.</th><th class="">Alcance</th></tr></thead><tbody><tr><td class="txt "><span class="dot" style="background:var(--c-nest)"></span>NEST Rio Vermelho</td><td class=" ">R$ 754.000</td><td class=" ">13/08</td><td class=" ">R$ 45</td><td class=" ">R$ 2.353,41</td><td class=" ">152</td><td class=" "><span class="pill lo">R$ 15,48</span></td><td class=" ">R$ 30–60</td><td class=" ">76</td><td class=" ">R$ 52,98</td><td class=" ">1,50%</td><td class=" ">2,32</td><td class=" ">19.150</td></tr><tr><td class="txt "><span class="dot" style="background:var(--c-cedro)"></span>Cedro</td><td class=" ">R$ 2.176.560</td><td class=" ">26/09</td><td class=" ">R$ 60</td><td class=" ">R$ 1.088,89</td><td class=" ">16</td><td class=" "><span class="pill hi">R$ 68,06</span></td><td class=" ">R$ 30–60</td><td class=" ">12</td><td class=" ">R$ 46,24</td><td class=" ">1,41%</td><td class=" ">1,56</td><td class=" ">15.137</td></tr><tr><td class="txt "><span class="dot" style="background:var(--c-sensia)"></span>Sensia Patamares</td><td class=" ">R$ 815.490</td><td class=" ">14/10</td><td class=" ">R$ 40</td><td class=" ">R$ 43,41</td><td class=" ">2</td><td class=" "><span class="pill lo">R$ 21,70</span></td><td class=" ">R$ 30–60</td><td class=" ">0</td><td class=" ">R$ 70,93</td><td class=" ">1,80%</td><td class=" ">1,27</td><td class=" ">481</td></tr></tbody></table></div>
+  </section>
+
+  <section class="card" id="cpl-semanal">
+    <h2>Custo por lead, semana a semana</h2>
+    <p class="note">Semanas de segunda a domingo; a primeira e a última de cada campanha são parciais. A faixa azul é a referência de CPL para médio/alto padrão.</p>
+    <div class="chart-leg"><span><i style="background:var(--c-nest)"></i>NEST Rio Vermelho</span><span><i style="background:var(--c-cedro)"></i>Cedro</span><span><i style="background:var(--c-sensia)"></i>Sensia Patamares</span></div>
+    <div class="chart"><svg viewBox="0 0 760 300" width="100%" role="img" aria-labelledby="cpl-t"><title id="cpl-t">cpl por semana</title><rect x="64" y="141.0" width="604" height="62.5" style="fill:var(--band)"/><text x="674" y="176.2" class="lbl" style="fill:var(--band-ink)">referência</text><text x="674" y="190.2" class="lbl" style="fill:var(--band-ink)">R$ 30–60</text><line x1="64" x2="668" y1="266.0" y2="266.0" style="stroke:var(--grid)"/><text x="54" y="270.0" text-anchor="end" class="tick">R$ 0</text><line x1="64" x2="668" y1="224.3" y2="224.3" style="stroke:var(--grid)"/><text x="54" y="228.3" text-anchor="end" class="tick">R$ 20</text><line x1="64" x2="668" y1="182.7" y2="182.7" style="stroke:var(--grid)"/><text x="54" y="186.7" text-anchor="end" class="tick">R$ 40</text><line x1="64" x2="668" y1="141.0" y2="141.0" style="stroke:var(--grid)"/><text x="54" y="145.0" text-anchor="end" class="tick">R$ 60</text><line x1="64" x2="668" y1="99.3" y2="99.3" style="stroke:var(--grid)"/><text x="54" y="103.3" text-anchor="end" class="tick">R$ 80</text><line x1="64" x2="668" y1="57.7" y2="57.7" style="stroke:var(--grid)"/><text x="54" y="61.7" text-anchor="end" class="tick">R$ 100</text><line x1="64" x2="668" y1="16.0" y2="16.0" style="stroke:var(--grid)"/><text x="54" y="20.0" text-anchor="end" class="tick">R$ 120</text><text x="64.0" y="290" text-anchor="middle" class="tick">10/08</text><text x="198.2" y="290" text-anchor="middle" class="tick">24/08</text><text x="332.4" y="290" text-anchor="middle" class="tick">07/09</text><text x="466.7" y="290" text-anchor="middle" class="tick">21/09</text><text x="600.9" y="290" text-anchor="middle" class="tick">05/10</text><path d="M64.0,198.0 L131.1,225.9 L198.2,235.1 L265.3,167.0 L332.4,191.5 L399.6,243.6 L466.7,230.5 L533.8,241.7 L600.9,242.8 L668.0,241.8" style="fill:none;stroke:var(--c-nest);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"/><circle cx="64.0" cy="198.0" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 10/08: R$ 32,65</title></circle><circle cx="131.1" cy="225.9" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 17/08: R$ 19,23</title></circle><circle cx="198.2" cy="235.1" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 24/08: R$ 14,83</title></circle><circle cx="265.3" cy="167.0" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 31/08: R$ 47,53</title></circle><circle cx="332.4" cy="191.5" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 07/09: R$ 35,77</title></circle><circle cx="399.6" cy="243.6" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 14/09: R$ 10,76</title></circle><circle cx="466.7" cy="230.5" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 21/09: R$ 17,03</title></circle><circle cx="533.8" cy="241.7" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 28/09: R$ 11,66</title></circle><circle cx="600.9" cy="242.8" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 05/10: R$ 11,12</title></circle><circle cx="668.0" cy="241.8" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 12/10: R$ 11,63</title></circle><path d="M533.8,180.1 L600.9,118.6 L668.0,48.9" style="fill:none;stroke:var(--c-cedro);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"/><circle cx="533.8" cy="180.1" r="4" style="fill:var(--c-cedro)"><title>Cedro · semana de 28/09: R$ 41,23</title></circle><circle cx="600.9" cy="118.6" r="4" style="fill:var(--c-cedro)"><title>Cedro · semana de 05/10: R$ 70,77</title></circle><circle cx="668.0" cy="48.9" r="4" style="fill:var(--c-cedro)"><title>Cedro · semana de 12/10: R$ 104,23</title></circle><circle cx="668.0" cy="220.8" r="4" style="fill:var(--c-sensia)"><title>Sensia Patamares · semana de 12/10: R$ 21,70</title></circle><text x="677.0" y="52.9" class="end" style="fill:var(--c-cedro)">Cedro R$ 104</text><text x="677.0" y="224.8" class="end" style="fill:var(--c-sensia)">Sensia R$ 22</text><text x="677.0" y="245.8" class="end" style="fill:var(--c-nest)">NEST R$ 12</text></svg></div>
+  </section>
+
+  <div>
+    <h2 class="sec-h" style="margin-bottom:14px">Leitura pela doutrina</h2>
+    <p class="note" style="margin-bottom:16px">Formato do protocolo de análise (§11): diagnóstico, comparação com a referência e decisão entre <b>não mexer</b>, <b>aguardar</b> ou <b>mudar</b>. Toda mudança abaixo é recomendação; nada foi executado na conta. Antes de qualquer decisão, conferir no Gerenciador a fase de aprendizado de cada conjunto, que a API não informou nesta leitura.</p>
+    <div class="grid2">
+
+      <article class="verd" style="--vc:var(--c-nest)">
+        <h3><span class="dot" style="background:var(--c-nest)"></span>NEST Rio Vermelho <span class="dec keep">Não mexer na verba</span></h3>
+        <dl>
+          <dt>Diagnóstico</dt>
+          <dd>CPL de <b>R$ 15,48</b> para um produto a partir de R$ 754 mil, metade do piso da referência. O anúncio destaca "entrada de R$ 15.000", e a doutrina (§1) diz que lead barato costuma vir de apelo comercial forte. A pergunta é se há filtro suficiente no formulário, e só o comercial responde. O CPM caiu de R$ 96 para R$ 33 e a frequência é 2,32, então não há sinal de fadiga.</dd>
+          <dt>Dado do comercial</dt>
+          <dd><span class="com-t">1 venda de R$ 567.400</span>, comissão de <span class="com-t">R$ 14.185</span>, vinda do anúncio "02 - Card", mas de apartamento de outro prédio, também no Rio Vermelho. Toda a mídia do NEST (R$ 2.353,41) equivale a 0,41% do valor vendido. É mais barato que a faixa de CAC considerada saudável na doutrina (0,8% a 2,5% do ticket). A comissão sozinha cobre 6,0 vezes a mídia da campanha.</dd>
+          <dt>O que isso muda</dt>
+          <dd>A venda veio do Card (R$ 21,08 por lead), não do vídeo de R$ 6,54. Por isso <b>não vamos mover verba do CONJ 1 para o CONJ 2 com base em CPL</b>. Uma venda isolada também não prova que o Card é melhor: é um caso, e de outro produto. 1 venda em 152 leads está dentro do esperado para a faixa (100 a 150 leads por venda).</dd>
+          <dt>Ponto técnico (§6)</dt>
+          <dd>O CONJ 2 otimiza para "leads de conversão". Isso só funciona com o CRM devolvendo à Meta, via API de Conversões, o estágio de cada lead (visita ou proposta). Sem essa integração, o conjunto otimiza sem o sinal que justifica a escolha. Precisamos confirmar se ela existe.</dd>
+          <dt>Decisão e próxima leitura</dt>
+          <dd>Manter como está. Pedir ao comercial MQL, visitas e propostas separados por conjunto (CONJ 1 e CONJ 2) e por anúncio. Reavaliar com duas semanas de funil.</dd>
+        </dl>
+      </article>
+
+      <article class="verd" style="--vc:var(--c-cedro)">
+        <h3><span class="dot" style="background:var(--c-cedro)"></span>Cedro <span class="dec change">Mudar · em conjunto duplicado</span></h3>
+        <dl>
+          <dt>Diagnóstico</dt>
+          <dd>CPL de <b>R$ 68,06</b> para um produto de R$ 2,18 mi, um pouco acima da referência, e piorando toda semana: R$ 41 → R$ 71 → R$ 104 (semana parcial). O CPM caiu de R$ 61 para R$ 24 no mesmo período: a entrega ficou mais barata e passou a gerar menos leads. O Feed custa R$ 247 por lead, contra R$ 40 no Reels.</dd>
+          <dt>Dado do comercial</dt>
+          <dd><span class="com-t">4 dos 16 leads qualificados (25%)</span>, ou R$ 272 de mídia por lead qualificado. Para alto padrão é um sinal de que o público tem perfil (§1: dez qualificados a R$ 40 valem mais que cem curiosos a R$ 2). Ainda falta saber o critério de "qualificado" usado (§9).</dd>
+          <dt>O problema real é volume (§4)</dt>
+          <dd>Com R$ 60/dia e CPL de R$ 68, o conjunto gera cerca de 0,9 lead por dia. A fase de aprendizado pede ~50 em 7 dias, então o conjunto nunca estabiliza. Na referência de 100 a 150 leads por venda, o CPL atual daria R$ 6.806 a R$ 10.209 de mídia por venda (0,31% a 0,47% do ticket): o custo cabe, o que falta é tempo. Nesse ritmo, 100 leads levam uns 113 dias.</dd>
+          <dt>Configuração fora da doutrina</dt>
+          <dd>Só Instagram num conjunto único com orçamento apertado (a doutrina pede IG + Facebook Feed nesse caso), idade mínima 20 e localização incluindo "quem esteve recentemente".</dd>
+          <dt>Decisão e próxima leitura</dt>
+          <dd>Não editar o conjunto atual. Duplicar e mudar <b>uma coisa</b>: incluir Facebook Feed. Idade 25+ e "apenas moradores" ficam para a rodada seguinte, para não empilhar mudanças. Reavaliar em 7 dias. Em paralelo, conversar sobre verba: alto padrão a R$ 60/dia não estabiliza.</dd>
+        </dl>
+      </article>
+
+      <article class="verd" style="--vc:var(--c-sensia)">
+        <h3><span class="dot" style="background:var(--c-sensia)"></span>Sensia Patamares <span class="dec wait">Aguardar</span></h3>
+        <dl>
+          <dt>Diagnóstico</dt>
+          <dd>2 dias, R$ 43,41 e 2 leads. A campanha está em aprendizado, e a regra é não mexer (§11, passo 2). Qualquer leitura de CPL agora é ruído.</dd>
+          <dt>Atenção estrutural (§4)</dt>
+          <dd>São dois conjuntos de R$ 20/dia (público aberto e segmentação por cargos) para um produto de R$ 815 mil. Na referência de CPL, cada um gera de 0,3 a 0,7 lead por dia, longe dos ~50 por semana do aprendizado. É fragmentação: o teste A/B dificilmente terá leitura. No próximo ciclo, a doutrina pede consolidar.</dd>
+          <dt>Verificar no criativo</dt>
+          <dd>Das duas versões do "Card 01", uma diz "3 quartos com suíte em <b>Piatã</b>" e a outra "em <b>Patamares</b>". Confirmar qual está certa.</dd>
+          <dt>Decisão e próxima leitura</dt>
+          <dd>Aguardar. Reavaliar em 22/10, se a conta não parar antes pelo limite de gasto.</dd>
+        </dl>
+      </article>
+
+      <article class="verd" style="--vc:var(--blue)">
+        <h3><span class="dot" style="background:var(--blue)"></span>A conta como um todo <span class="dec wait">Conversa de verba</span></h3>
+        <dl>
+          <dt>Diagnóstico</dt>
+          <dd>A conta roda R$ 145/dia divididos entre três empreendimentos e cinco conjuntos. A doutrina define um piso de ~R$ 165/dia para sustentar <i>um</i> empreendimento. Nenhum dos cinco conjuntos tem orçamento para sair do aprendizado.</dd>
+          <dt>Decisão</dt>
+          <dd>Levar à reunião com o cliente a escolha entre concentrar a verba no produto prioritário ou aumentar o investimento. "Anunciar tudo" com a verba atual é o cenário que a doutrina aponta como o que mais queima dinheiro.</dd>
+        </dl>
+      </article>
+    </div>
+  </div>
+
+  <section class="card" id="checklist">
+    <h2>Configuração atual × doutrina</h2>
+    <p class="note">Lido das configurações das campanhas pela API da Meta. "Não visível" = a leitura não teve acesso; precisa ser conferido no Gerenciador.</p>
+    <div class="tw"><table class="chk"><thead><tr><th class="txt">Item da doutrina</th><th class="txt">Ref.</th><th class="txt">NEST</th><th class="txt">Cedro</th><th class="txt">Sensia</th></tr></thead><tbody><tr><td class="txt wrap">Orçamento no nível da campanha (CBO)</td><td class="txt ref">§3</td><td class="txt"><span class="st no">Diverge</span><span class="stn">no conjunto</span></td><td class="txt"><span class="st no">Diverge</span><span class="stn">no conjunto</span></td><td class="txt"><span class="st no">Diverge</span><span class="stn">no conjunto</span></td></tr><tr><td class="txt wrap">Localização: apenas quem mora no local</td><td class="txt ref">§3</td><td class="txt"><span class="st no">Diverge</span><span class="stn">moradores + quem esteve</span></td><td class="txt"><span class="st no">Diverge</span><span class="stn">moradores + quem esteve</span></td><td class="txt"><span class="st no">Diverge</span><span class="stn">moradores + quem esteve</span></td></tr><tr><td class="txt wrap">Idade mínima 25 anos</td><td class="txt ref">§3</td><td class="txt"><span class="st ok">Conforme</span><span class="stn">25+</span></td><td class="txt"><span class="st no">Diverge</span><span class="stn">20+</span></td><td class="txt"><span class="st ok">Conforme</span><span class="stn">25+</span></td></tr><tr><td class="txt wrap">Posicionamentos: IG + Facebook Feed com orçamento apertado; sem Audience Network</td><td class="txt ref">§3</td><td class="txt"><span class="st ok">Conforme</span><span class="stn">IG + FB</span></td><td class="txt"><span class="st no">Diverge</span><span class="stn">só Instagram, conjunto único</span></td><td class="txt"><span class="st ok">Conforme</span><span class="stn">IG + FB</span></td></tr><tr><td class="txt wrap">Meta: maximizar leads (sem CRM integrado)</td><td class="txt ref">§6</td><td class="txt"><span class="st warn">Verificar</span><span class="stn">CONJ 2 usa "leads de conversão"</span></td><td class="txt"><span class="st ok">Conforme</span></td><td class="txt"><span class="st ok">Conforme</span></td></tr><tr><td class="txt wrap">Valor e condição explícitos no criativo</td><td class="txt ref">§5.1</td><td class="txt"><span class="st ok">Conforme</span><span class="stn">R$ 754 mil, entrada R$ 15 mil</span></td><td class="txt"><span class="st ok">Conforme</span><span class="stn">R$ 2,18 mi</span></td><td class="txt"><span class="st warn">Verificar</span><span class="stn">Card 01 cita Piatã em uma versão e Patamares na outra</span></td></tr><tr><td class="txt wrap">CTA "Saiba mais"</td><td class="txt ref">§3</td><td class="txt"><span class="st no">Diverge</span><span class="stn">Cadastre-se</span></td><td class="txt"><span class="st no">Diverge</span><span class="stn">vídeo: Cadastre-se</span></td><td class="txt"><span class="st no">Diverge</span><span class="stn">Cadastre-se</span></td></tr><tr><td class="txt wrap">Orçamento compatível com sair do aprendizado (~50 leads/7 dias por conjunto)</td><td class="txt ref">§4</td><td class="txt"><span class="st no">Diverge</span><span class="stn">2 conjuntos, R$ 45/dia</span></td><td class="txt"><span class="st no">Diverge</span><span class="stn">R$ 60/dia, ~1 lead/dia</span></td><td class="txt"><span class="st no">Diverge</span><span class="stn">2 conjuntos de R$ 20/dia</span></td></tr><tr><td class="txt wrap">Formulário: entrega flexível desligada, "Maior intenção", perguntas qualificadoras</td><td class="txt ref">§5</td><td class="txt"><span class="st unk">Não visível</span><span class="stn">sem permissão de leitura</span></td><td class="txt"><span class="st unk">Não visível</span></td><td class="txt"><span class="st unk">Não visível</span></td></tr><tr><td class="txt wrap">Fase de aprendizado de cada conjunto</td><td class="txt ref">§11</td><td class="txt"><span class="st unk">Não visível</span><span class="stn">conferir no Gerenciador</span></td><td class="txt"><span class="st unk">Não visível</span></td><td class="txt"><span class="st unk">Não visível</span></td></tr></tbody></table></div>
+  </section>
+
+  <section class="card" id="pedido">
+    <span class="eyebrow">Para a próxima conversa com o comercial</span>
+    <h2>O que precisamos para trocar CPL por resultado</h2>
+    <ol class="ask">
+      <li><b>Critério de lead qualificado por escrito</b>, por empreendimento (§9). Hoje "4 qualificados no Cedro" não pode ser comparado com nada.</li>
+      <li><b>Por lead, com o ID do lead da Meta:</b> respondeu, qualificado, visita agendada, visita realizada, proposta, venda. Na venda, qual imóvel foi comprado, como no caso do NEST.</li>
+      <li><b>Separado por conjunto e por anúncio</b>, para decidir verba por resultado e não por CPL. É o que falta para decidir entre CONJ 1 e CONJ 2 no NEST.</li>
+      <li><b>Uma conversa semanal curta</b> com esses números até a integração do CRM com a Meta estar no ar. A integração fecha o ciclo: o estágio de cada lead volta para a Meta e a campanha passa a otimizar por visita ou proposta, não por cadastro (§6).</li>
+    </ol>
+  </section>
+
+  <section class="card" id="detalhes">
+    <h2>Detalhamento</h2>
+    <details open><summary>Custo por mil impressões (CPM), semana a semana</summary><div><p class="note">CPM subindo é o primeiro sinal de fadiga e aparece antes do CPL piorar (§11). Aqui ele cai nas duas campanhas.</p><div class="chart"><svg viewBox="0 0 760 300" width="100%" role="img" aria-labelledby="cpm-t"><title id="cpm-t">cpm por semana</title><line x1="64" x2="668" y1="266.0" y2="266.0" style="stroke:var(--grid)"/><text x="54" y="270.0" text-anchor="end" class="tick">R$ 0</text><line x1="64" x2="668" y1="216.0" y2="216.0" style="stroke:var(--grid)"/><text x="54" y="220.0" text-anchor="end" class="tick">R$ 20</text><line x1="64" x2="668" y1="166.0" y2="166.0" style="stroke:var(--grid)"/><text x="54" y="170.0" text-anchor="end" class="tick">R$ 40</text><line x1="64" x2="668" y1="116.0" y2="116.0" style="stroke:var(--grid)"/><text x="54" y="120.0" text-anchor="end" class="tick">R$ 60</text><line x1="64" x2="668" y1="66.0" y2="66.0" style="stroke:var(--grid)"/><text x="54" y="70.0" text-anchor="end" class="tick">R$ 80</text><line x1="64" x2="668" y1="16.0" y2="16.0" style="stroke:var(--grid)"/><text x="54" y="20.0" text-anchor="end" class="tick">R$ 100</text><text x="64.0" y="290" text-anchor="middle" class="tick">10/08</text><text x="198.2" y="290" text-anchor="middle" class="tick">24/08</text><text x="332.4" y="290" text-anchor="middle" class="tick">07/09</text><text x="466.7" y="290" text-anchor="middle" class="tick">21/09</text><text x="600.9" y="290" text-anchor="middle" class="tick">05/10</text><path d="M64.0,134.2 L131.1,83.5 L198.2,84.1 L265.3,25.9 L332.4,100.8 L399.6,144.4 L466.7,122.5 L533.8,148.7 L600.9,167.2 L668.0,183.4" style="fill:none;stroke:var(--c-nest);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"/><circle cx="64.0" cy="134.2" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 10/08: R$ 52,70</title></circle><circle cx="131.1" cy="83.5" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 17/08: R$ 73,01</title></circle><circle cx="198.2" cy="84.1" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 24/08: R$ 72,77</title></circle><circle cx="265.3" cy="25.9" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 31/08: R$ 96,03</title></circle><circle cx="332.4" cy="100.8" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 07/09: R$ 66,09</title></circle><circle cx="399.6" cy="144.4" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 14/09: R$ 48,62</title></circle><circle cx="466.7" cy="122.5" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 21/09: R$ 57,40</title></circle><circle cx="533.8" cy="148.7" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 28/09: R$ 46,90</title></circle><circle cx="600.9" cy="167.2" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 05/10: R$ 39,52</title></circle><circle cx="668.0" cy="183.4" r="4" style="fill:var(--c-nest)"><title>NEST Rio Vermelho · semana de 12/10: R$ 33,04</title></circle><path d="M466.7,102.7 L533.8,113.8 L600.9,123.1 L668.0,205.8" style="fill:none;stroke:var(--c-cedro);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round"/><circle cx="466.7" cy="102.7" r="4" style="fill:var(--c-cedro)"><title>Cedro · semana de 21/09: R$ 65,31</title></circle><circle cx="533.8" cy="113.8" r="4" style="fill:var(--c-cedro)"><title>Cedro · semana de 28/09: R$ 60,87</title></circle><circle cx="600.9" cy="123.1" r="4" style="fill:var(--c-cedro)"><title>Cedro · semana de 05/10: R$ 57,15</title></circle><circle cx="668.0" cy="205.8" r="4" style="fill:var(--c-cedro)"><title>Cedro · semana de 12/10: R$ 24,06</title></circle><circle cx="668.0" cy="88.7" r="4" style="fill:var(--c-sensia)"><title>Sensia Patamares · semana de 12/10: R$ 70,93</title></circle><text x="677.0" y="92.7" class="end" style="fill:var(--c-sensia)">Sensia R$ 71</text><text x="677.0" y="187.4" class="end" style="fill:var(--c-nest)">NEST R$ 33</text><text x="677.0" y="209.8" class="end" style="fill:var(--c-cedro)">Cedro R$ 24</text></svg></div></div></details>
+    <details><summary>Conjuntos de anúncios</summary><div><p class="note">Orçamento definido no conjunto. Em vermelho, CPL de pelo menos o dobro da média da campanha.</p><div class="tw"><table class=""><thead><tr><th class="txt">Conjunto</th><th class="txt">Otimização</th><th class="">Orçam./dia</th><th class="">Investimento</th><th class="">Leads</th><th class="">CPL</th><th class="">Conversas</th><th class="">Freq.</th><th class="">CTR link</th></tr></thead><tbody><tr><td class="txt ">NEST Rio Vermelho · CONJ 1</td><td class="txt ">Leads</td><td class=" ">R$ 30</td><td class=" ">R$ 1.908,69</td><td class=" ">84</td><td class=" ">R$ 22,72</td><td class=" ">41</td><td class=" ">2,15</td><td class=" ">1,17%</td></tr><tr><td class="txt ">Cedro · Conj 1</td><td class="txt ">Leads</td><td class=" ">R$ 60</td><td class=" ">R$ 1.088,89</td><td class=" ">16</td><td class=" ">R$ 68,06</td><td class=" ">12</td><td class=" ">1,56</td><td class=" ">1,41%</td></tr><tr><td class="txt ">NEST Rio Vermelho · CONJ 2 - REELS</td><td class="txt ">Leads de conversão</td><td class=" ">R$ 15</td><td class=" ">R$ 444,72</td><td class=" ">68</td><td class=" ">R$ 6,54</td><td class=" ">35</td><td class=" ">1,70</td><td class=" ">2,64%</td></tr><tr><td class="txt ">Sensia Patamares · CONJ 1 - Seguimentação Cargos</td><td class="txt ">Leads</td><td class=" ">R$ 20</td><td class=" ">R$ 23,02</td><td class=" ">1</td><td class=" ">R$ 23,02</td><td class=" ">0</td><td class=" ">1,19</td><td class=" ">2,79%</td></tr><tr><td class="txt ">Sensia Patamares · CONJ 1 - ABERTO</td><td class="txt ">Leads</td><td class=" ">R$ 20</td><td class=" ">R$ 20,39</td><td class=" ">1</td><td class=" ">R$ 20,39</td><td class=" ">0</td><td class=" ">1,17</td><td class=" ">0,69%</td></tr></tbody></table></div></div></details>
+    <details><summary>Anúncios</summary><div><p class="note">"01 - Post Único" foi reprovado pela Meta e está sem veicular desde 31/08.</p><div class="tw"><table class=""><thead><tr><th class="txt">Anúncio</th><th class="txt">Status</th><th class="txt">Formato</th><th class="">Investimento</th><th class="">Leads</th><th class="">CPL</th><th class="">Conversas</th><th class="">CTR link</th></tr></thead><tbody><tr><td class="txt ">NEST Rio Vermelho · CONJ 1 · 02 - Card <span class="tag com">venda informada</span></td><td class="txt "><span class="pill neutral">Ativo</span></td><td class="txt ">Imagem/post</td><td class=" ">R$ 1.011,61</td><td class=" ">48</td><td class=" ">R$ 21,08</td><td class=" ">23</td><td class=" ">1,00%</td></tr><tr><td class="txt ">Cedro · Conj 1 · Vídeo</td><td class="txt "><span class="pill neutral">Ativo</span></td><td class="txt ">Vídeo</td><td class=" ">R$ 975,61</td><td class=" ">14</td><td class=" ">R$ 69,69</td><td class=" ">12</td><td class=" ">1,38%</td></tr><tr><td class="txt ">NEST Rio Vermelho · CONJ 1 · 01 - Post Único</td><td class="txt "><span class="pill hi">Reprovado</span></td><td class="txt ">Imagem/post</td><td class=" ">R$ 520,11</td><td class=" ">27</td><td class=" ">R$ 19,26</td><td class=" ">12</td><td class=" ">1,61%</td></tr><tr><td class="txt ">NEST Rio Vermelho · CONJ 2 - REELS · Vídeo 1</td><td class="txt "><span class="pill neutral">Ativo</span></td><td class="txt ">Vídeo</td><td class=" ">R$ 444,72</td><td class=" ">68</td><td class=" ">R$ 6,54</td><td class=" ">35</td><td class=" ">2,64%</td></tr><tr><td class="txt ">NEST Rio Vermelho · CONJ 1 · 01 - Post Único — Cópia</td><td class="txt "><span class="pill neutral">Ativo</span></td><td class="txt ">Imagem/post</td><td class=" ">R$ 376,97</td><td class=" ">9</td><td class=" bad">R$ 41,89</td><td class=" ">6</td><td class=" ">1,22%</td></tr><tr><td class="txt ">Cedro · Conj 1 · Carrossel - Cedro</td><td class="txt "><span class="pill neutral">Ativo</span></td><td class="txt ">Imagem/post</td><td class=" ">R$ 113,28</td><td class=" ">2</td><td class=" ">R$ 56,64</td><td class=" ">0</td><td class=" ">1,50%</td></tr><tr><td class="txt ">Sensia Patamares · CONJ 1 - Seguimentação Cargos · Card 01</td><td class="txt "><span class="pill neutral">Ativo</span></td><td class="txt ">Imagem/post</td><td class=" ">R$ 23,02</td><td class=" ">1</td><td class=" ">R$ 23,02</td><td class=" ">0</td><td class=" ">2,79%</td></tr><tr><td class="txt ">Sensia Patamares · CONJ 1 - ABERTO · Vídeo 01</td><td class="txt "><span class="pill neutral">Ativo</span></td><td class="txt ">Vídeo</td><td class=" ">R$ 12,30</td><td class=" ">0</td><td class=" ">—</td><td class=" ">0</td><td class=" ">0,57%</td></tr><tr><td class="txt ">Sensia Patamares · CONJ 1 - ABERTO · Card 01</td><td class="txt "><span class="pill neutral">Ativo</span></td><td class="txt ">Imagem/post</td><td class=" ">R$ 8,09</td><td class=" ">1</td><td class=" ">R$ 8,09</td><td class=" ">0</td><td class=" ">0,87%</td></tr></tbody></table></div></div></details>
+    <details><summary>Posicionamentos</summary><div><p class="note">Barra na mesma escala para as três campanhas. Em vermelho, o dobro ou mais do CPL da campanha. Linhas com menos de R$ 1 omitidas.</p><div class="tw"><table class=""><thead><tr><th class="txt">Campanha</th><th class="txt">Posicionamento</th><th class="">Investimento</th><th class="">Leads</th><th class="">CPL</th></tr></thead><tbody><tr><td class="txt ">NEST</td><td class="txt ">Instagram Feed</td><td class=" ">R$ 1.399,07</td><td class=" ">69</td><td class=" "><span class="bc"><span class="b " style="width:7px;background:var(--c-nest)"></span>R$ 20,28</span></td></tr><tr><td class="txt ">NEST</td><td class="txt ">Facebook Feed</td><td class=" ">R$ 508,96</td><td class=" ">17</td><td class=" "><span class="bc"><span class="b " style="width:11px;background:var(--c-nest)"></span>R$ 29,94</span></td></tr><tr><td class="txt ">NEST</td><td class="txt ">Instagram Reels</td><td class=" ">R$ 197,11</td><td class=" ">32</td><td class=" "><span class="bc"><span class="b " style="width:3px;background:var(--c-nest)"></span>R$ 6,16</span></td></tr><tr><td class="txt ">NEST</td><td class="txt ">Instagram Stories</td><td class=" ">R$ 128,73</td><td class=" ">20</td><td class=" "><span class="bc"><span class="b " style="width:3px;background:var(--c-nest)"></span>R$ 6,44</span></td></tr><tr><td class="txt ">NEST</td><td class="txt ">Facebook Reels</td><td class=" ">R$ 99,97</td><td class=" ">13</td><td class=" "><span class="bc"><span class="b " style="width:3px;background:var(--c-nest)"></span>R$ 7,69</span></td></tr><tr><td class="txt ">NEST</td><td class="txt ">Facebook Stories</td><td class=" ">R$ 15,53</td><td class=" ">1</td><td class=" "><span class="bc"><span class="b " style="width:6px;background:var(--c-nest)"></span>R$ 15,53</span></td></tr><tr><td class="txt ">NEST</td><td class="txt ">Facebook Feed (perfil)</td><td class=" ">R$ 4,03</td><td class=" ">0</td><td class=" ">—</td></tr><tr><td class="txt ">Cedro</td><td class="txt ">Instagram Reels</td><td class=" ">R$ 479,15</td><td class=" ">12</td><td class=" "><span class="bc"><span class="b " style="width:15px;background:var(--c-cedro)"></span>R$ 39,93</span></td></tr><tr><td class="txt ">Cedro</td><td class="txt ">Instagram Stories</td><td class=" ">R$ 363,21</td><td class=" ">3</td><td class=" "><span class="bc"><span class="b " style="width:44px;background:var(--c-cedro)"></span>R$ 121,07</span></td></tr><tr><td class="txt ">Cedro</td><td class="txt ">Instagram Feed</td><td class=" ">R$ 246,53</td><td class=" ">1</td><td class=" "><span class="bc"><span class="b hi" style="width:90px;background:var(--bad)"></span>R$ 246,53</span></td></tr><tr><td class="txt ">Sensia</td><td class="txt ">Instagram Feed</td><td class=" ">R$ 16,61</td><td class=" ">2</td><td class=" "><span class="bc"><span class="b " style="width:3px;background:var(--c-sensia)"></span>R$ 8,30</span></td></tr><tr><td class="txt ">Sensia</td><td class="txt ">Instagram Reels</td><td class=" ">R$ 13,11</td><td class=" ">0</td><td class=" ">—</td></tr><tr><td class="txt ">Sensia</td><td class="txt ">Instagram Stories</td><td class=" ">R$ 7,60</td><td class=" ">0</td><td class=" ">—</td></tr><tr><td class="txt ">Sensia</td><td class="txt ">Facebook Reels</td><td class=" ">R$ 2,74</td><td class=" ">0</td><td class=" ">—</td></tr><tr><td class="txt ">Sensia</td><td class="txt ">Facebook Stories</td><td class=" ">R$ 2,42</td><td class=" ">0</td><td class=" ">—</td></tr></tbody></table></div></div></details>
+    <details><summary>Faixa etária</summary><div><p class="note">O público Advantage+ está ligado: idade e gênero são sugestões e a Meta entrega fora delas. Volumes pequenos por faixa.</p><div class="tw"><table class=""><thead><tr><th class="txt">Campanha</th><th class="txt">Idade</th><th class="">Investimento</th><th class="">Leads</th><th class="">CPL</th></tr></thead><tbody><tr><td class="txt ">NEST</td><td class="txt ">25-34</td><td class=" ">R$ 312,93</td><td class=" ">15</td><td class=" ">R$ 20,86</td></tr><tr><td class="txt ">NEST</td><td class="txt ">35-44</td><td class=" ">R$ 518,23</td><td class=" ">39</td><td class=" ">R$ 13,29</td></tr><tr><td class="txt ">NEST</td><td class="txt ">45-54</td><td class=" ">R$ 561,59</td><td class=" ">39</td><td class=" ">R$ 14,40</td></tr><tr><td class="txt ">NEST</td><td class="txt ">55-64</td><td class=" ">R$ 482,69</td><td class=" ">28</td><td class=" ">R$ 17,24</td></tr><tr><td class="txt ">NEST</td><td class="txt ">65+</td><td class=" ">R$ 477,95</td><td class=" ">31</td><td class=" ">R$ 15,42</td></tr><tr><td class="txt ">Cedro</td><td class="txt ">18-24</td><td class=" ">R$ 102,85</td><td class=" ">2</td><td class=" ">R$ 51,42</td></tr><tr><td class="txt ">Cedro</td><td class="txt ">25-34</td><td class=" ">R$ 203,86</td><td class=" ">2</td><td class=" ">R$ 101,93</td></tr><tr><td class="txt ">Cedro</td><td class="txt ">35-44</td><td class=" ">R$ 229,46</td><td class=" ">3</td><td class=" ">R$ 76,49</td></tr><tr><td class="txt ">Cedro</td><td class="txt ">45-54</td><td class=" ">R$ 234,93</td><td class=" ">3</td><td class=" ">R$ 78,31</td></tr><tr><td class="txt ">Cedro</td><td class="txt ">55-64</td><td class=" ">R$ 152,89</td><td class=" ">1</td><td class=" bad">R$ 152,89</td></tr><tr><td class="txt ">Cedro</td><td class="txt ">65+</td><td class=" ">R$ 164,78</td><td class=" ">5</td><td class=" ">R$ 32,96</td></tr><tr><td class="txt ">Sensia</td><td class="txt ">25-34</td><td class=" ">R$ 3,99</td><td class=" ">0</td><td class=" ">—</td></tr><tr><td class="txt ">Sensia</td><td class="txt ">35-44</td><td class=" ">R$ 14,47</td><td class=" ">1</td><td class=" ">R$ 14,47</td></tr><tr><td class="txt ">Sensia</td><td class="txt ">45-54</td><td class=" ">R$ 8,37</td><td class=" ">0</td><td class=" ">—</td></tr><tr><td class="txt ">Sensia</td><td class="txt ">55-64</td><td class=" ">R$ 6,92</td><td class=" ">1</td><td class=" ">R$ 6,92</td></tr><tr><td class="txt ">Sensia</td><td class="txt ">65+</td><td class=" ">R$ 9,66</td><td class=" ">0</td><td class=" ">—</td></tr></tbody></table></div></div></details>
+  </section>
+
+</div>
+</main>
+<footer><div class="wrap">
+  <p>Fonte: Meta Marketing API, conta de anúncios Villa Verde, leitura de 15/10/2026. Lead = formulário instantâneo enviado; conversa = conversa por mensagem iniciada a partir do anúncio (7 dias); atribuição configurada de 1 dia após o clique.</p>
+  <p>Dados comerciais (venda, comissão, qualificados) informados pelo comercial em 15/10/2026, não verificados em CRM. Referências de CPL, leads por venda, CAC e piso de mídia: Doutrina de Tráfego Pago Imobiliário Provecta VGV v1.0.</p>
+</div></footer>
+</body>
+</html>
